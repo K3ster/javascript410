@@ -3,7 +3,7 @@
 const express = require("express");
 const app = express();
 
-// define endpoint for exercise 1 here
+// define endpoint for circle here
 app.get("/math/circle/:r", (req, res) => {
   const r = parseFloat(req.params.r);
   if (isNaN(r) || r <= 0) {
@@ -19,7 +19,22 @@ app.get("/math/circle/:r", (req, res) => {
   res.json(result);
 });
 
-//TODO2
+// define endpoint for rectangle here
+app.get("/math/rectangle/:width/:height", (req, res) => {
+  const width = parseFloat(req.params.width);
+  const height = parseFloat(req.params.height);
+  if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+    res.status(400).json({ error: "Invalid dimensions" });
+    return;
+  }
+  const area = width * height;
+  const perimeter = 2 * (width + height);
+  const result = {
+    area: area,
+    perimeter: perimeter,
+  };
+  res.json(result);
+});
 
 //TODO3
 
