@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Joke Book</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      async function fetchJoke(category) {
+        try {
+          const response = await fetch(`/jokebook/joke/${category}`);
+          const joke = await response.json();
+          document.getElementById("joke").innerText =
+            `${joke.joke}\n${joke.response}`;
+        } catch (error) {
+          console.error("Error fetching joke:", error);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Wybierz kategorię dowcipu</h1>
+    <button onclick="fetchJoke('funnyJoke')">Zabawne dowcipy</button>
+    <button onclick="fetchJoke('lameJoke')">Kiepskie dowcipy</button>
+    <h2>Dowcip:</h2>
+    <pre id="joke"></pre>
+  </body>
+</html>
